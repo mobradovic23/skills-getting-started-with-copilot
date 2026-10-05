@@ -3,48 +3,58 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mergington High School Activities</title>
+    <title>Housing Loan Calculator</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header>
-      <h1>Mergington High School</h1>
-      <h2>Extracurricular Activities</h2>
-    </header>
+    <main class="calculator">
+      <header>
+        <h1>Housing Loan Calculator</h1>
+        <p>Estimate your monthly mortgage payment.</p>
+      </header>
 
-    <main>
-      <section id="activities-container">
-        <h3>Available Activities</h3>
-        <div id="activities-list">
-          <!-- Activities will be loaded here -->
-          <p>Loading activities...</p>
+      <form id="loan-form">
+        <div class="form-group">
+          <label for="home-price">Home price ($)</label>
+          <input id="home-price" name="home-price" type="number" min="0.01" step="0.01" required />
         </div>
+        <div class="form-group">
+          <label for="down-payment">Down payment ($)</label>
+          <input id="down-payment" name="down-payment" type="number" min="0" step="0.01" required />
+        </div>
+        <div class="form-group">
+          <label for="interest-rate">Annual interest rate (%)</label>
+          <input id="interest-rate" name="interest-rate" type="number" min="0" max="100" step="0.01" required />
+        </div>
+        <div class="form-group">
+          <label for="loan-term">Loan term (years)</label>
+          <input id="loan-term" name="loan-term" type="number" min="1" max="50" step="1" required />
+        </div>
+        <button type="submit">Calculate payment</button>
+      </form>
+
+      <p id="error-message" class="error" role="alert" hidden></p>
+      <section id="results" aria-live="polite" hidden>
+        <h2>Estimated payment</h2>
+        <p class="monthly-payment"><output id="monthly-payment"></output><span> / month</span></p>
+        <dl>
+          <div>
+            <dt>Loan amount</dt>
+            <dd id="loan-amount"></dd>
+          </div>
+          <div>
+            <dt>Total paid</dt>
+            <dd id="total-paid"></dd>
+          </div>
+          <div>
+            <dt>Total interest</dt>
+            <dd id="total-interest"></dd>
+          </div>
+        </dl>
       </section>
 
-      <section id="signup-container">
-        <h3>Sign Up for an Activity</h3>
-        <form id="signup-form">
-          <div class="form-group">
-            <label for="email">Student Email:</label>
-            <input type="email" id="email" required placeholder="your-email@mergington.edu" />
-          </div>
-          <div class="form-group">
-            <label for="activity">Select Activity:</label>
-            <select id="activity" required>
-              <option value="">-- Select an activity --</option>
-              <!-- Activity options will be loaded here -->
-            </select>
-          </div>
-          <button type="submit">Sign Up</button>
-        </form>
-        <div id="message" class="hidden"></div>
-      </section>
+      <p class="disclaimer">Estimate includes principal and interest only. Taxes, insurance, and other fees are not included.</p>
     </main>
-
-    <footer>
-      <p>&copy; 2023 Mergington High School</p>
-    </footer>
-
     <script src="app.js"></script>
   </body>
 </html>
